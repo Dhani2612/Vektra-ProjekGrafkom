@@ -19,6 +19,7 @@ from tools.text_tool import TextTool
 from ui.toolbar import Toolbar
 from ui.properties import PropertiesPanel
 from ui.menubar import MenuBar
+from tools.eraser_tool import EraserTool
 
 
 class App:
@@ -63,6 +64,7 @@ class App:
             "rect":    ShapeTool(self, mode="rect"),
             "polygon": ShapeTool(self, mode="polygon"),
             "text":    TextTool(self),
+            "eraser":  EraserTool(self),
         }
         self.active_tool_name = "select"
         self.active_tool = self.tools["select"]

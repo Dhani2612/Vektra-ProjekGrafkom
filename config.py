@@ -58,4 +58,5 @@ TOOL_SHORTCUTS = {
     "rect":    "r",
     "polygon": "g",
     "text":    "t",
+    "eraser":  "e",
 }

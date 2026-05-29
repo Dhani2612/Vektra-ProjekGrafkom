@@ -32,6 +32,7 @@ Seluruh proses rendering — garis, kurva, hingga pengisian area — dibangun da
 | Fitur Berkas | Menu untuk membuat kanvas baru, buka/simpan proyek (`.vk`), dan ekspor ke PNG |
 | Teks | Text tool: klik kanvas → ketik teks → atur font size & warna |
 | Gambar | Import gambar sebagai layer referensi (background) |
+| Interaksi Keyboard | Shortcut: Delete, Ctrl+Z, Ctrl+Y, S/P/B/T/E untuk ganti tool |
 
 ---
 
@@ -56,35 +57,43 @@ vektra/
 │
 ├── main.py                   # Entry point, event loop utama
 ├── config.py                 # Konstanta: resolusi, warna UI, FPS, font
+├── debug_draw.py             # Sandbox visual test untuk engine
+├── ProjectBrief.md           # Dokumentasi proyek (telah diperbarui)
+├── .gitignore                # File git ignore
 │
 ├── engine/                   # Custom graphics engine — INTI PROYEK
+│   ├── __init__.py
 │   ├── drawing.py            # DDA, Bresenham, Bezier cubic, rasterizer
 │   ├── fill.py               # Scanline polygon fill
 │   └── transform.py          # Matriks homogeneous 3×3, compose, apply
 │
 ├── editor/                   # State & logika editor
+│   ├── __init__.py
 │   ├── canvas.py             # Surface kanvas, render semua objek
-│   ├── objects.py            # Kelas shape: Line, BezierCurve, Polygon, TextObj, ImageObj
+│   ├── objects.py            # Kelas shape: Line, BezierCurve, Polygon, dll.
 │   ├── selection.py          # Hit-test, bounding box, transform handle
 │   └── history.py            # Undo/redo stack (Command pattern)
 │
 ├── tools/                    # Tool aktif yang menangani input mouse
+│   ├── __init__.py
+│   ├── base_tool.py          # Kelas dasar untuk semua tool
 │   ├── select_tool.py        # Pilih, move, rotate, scale objek
 │   ├── pen_tool.py           # Gambar coretan bebas (FreehandObj)
 │   ├── bezier_tool.py        # Gambar kurva Bezier cubic
 │   ├── shape_tool.py         # Rectangle & polygon dengan fill
-│   └── text_tool.py          # Insert & edit teks
+│   ├── text_tool.py          # Insert & edit teks
+│   └── eraser_tool.py        # Hapus objek dengan klik dan drag (BARU)
 │
 ├── ui/                       # Komponen antarmuka
+│   ├── __init__.py
 │   ├── toolbar.py            # Panel tool kiri (ikon tool)
 │   ├── properties.py         # Panel kanan: warna, ketebalan, style
 │   ├── menubar.py            # Menu bar: Berkas, Edit, Tampilan
 │   └── colorpicker.py        # Widget color picker sederhana (HSV/RGB)
 │
-└── assets/
+└── assets/                   # Folder untuk aset statis
     ├── icons/                # Ikon toolbar (PNG 24×24)
     └── fonts/                # File .ttf untuk text tool
-```
 
 ---
 
@@ -208,6 +217,11 @@ class BaseTool:
 - Klik kanvas → muncul cursor teks
 - Ketik → render teks real-time di kanvas
 - Esc / klik lain → commit TextObj
+
+**Eraser Tool (`E`)**
+- Klik atau seret (drag) kursor menyeberangi objek di kanvas.
+- Menghapus objek yang diklik atau dilewati secara instan.
+- Mendukung fitur undo/redo jika pengguna menghapus secara tidak sengaja.
 
 ---
 

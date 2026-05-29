@@ -16,6 +16,7 @@ TOOL_DEFS = [
     ("rect",    "Kotak", "R"),
     ("polygon", "Segi-N", "G"),
     ("text",    "Teks", "T"),
+    ("eraser",  "Hapus", "E"),
 ]
 
 BUTTON_SIZE = config.TOOLBAR_WIDTH - 8
