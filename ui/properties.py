@@ -84,11 +84,11 @@ class PropertiesPanel:
         for i, c in enumerate(self.stroke_colors):
             rx = bx + 60 + i * 20
             rect = pygame.Rect(rx, by + 5, 18, 18)
-            pygame.draw.rect(surface, c, rect)
+            pygame.draw.rect(surface, c, rect, border_radius=4)
             if c == app.current_stroke_color:
-                pygame.draw.rect(surface, config.C_ACCENT, rect, 2)
+                pygame.draw.rect(surface, config.C_ACCENT, rect, 2, border_radius=4)
             else:
-                pygame.draw.rect(surface, config.C_BORDER, rect, 1)
+                pygame.draw.rect(surface, config.C_BORDER, rect, 1, border_radius=4)
 
         # ── Fill Color ──
         lbl2 = self.font.render("Isi:", True, config.C_TEXT)
@@ -98,16 +98,16 @@ class PropertiesPanel:
             rx = bx + 60 + i * 20
             rect = pygame.Rect(rx, by + 32, 18, 18)
             if c is None:
-                pygame.draw.rect(surface, config.C_PANEL_LIGHT, rect)
+                pygame.draw.rect(surface, config.C_PANEL_LIGHT, rect, border_radius=4)
                 # Draw X for no fill
                 pygame.draw.line(surface, config.C_DANGER, rect.topleft, rect.bottomright, 1)
                 pygame.draw.line(surface, config.C_DANGER, rect.topright, rect.bottomleft, 1)
             else:
-                pygame.draw.rect(surface, c, rect)
+                pygame.draw.rect(surface, c, rect, border_radius=4)
             if c == app.current_fill_color:
-                pygame.draw.rect(surface, config.C_ACCENT, rect, 2)
+                pygame.draw.rect(surface, config.C_ACCENT, rect, 2, border_radius=4)
             else:
-                pygame.draw.rect(surface, config.C_BORDER, rect, 1)
+                pygame.draw.rect(surface, config.C_BORDER, rect, 1, border_radius=4)
 
         # ── Width ──
         lbl3 = self.font.render("Tebal:", True, config.C_TEXT)

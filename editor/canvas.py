@@ -66,17 +66,17 @@ class Canvas:
         target_surface.blit(self.surface, (self.rect.x, self.rect.y))
 
     def _draw_grid(self):
-        """Gambar grid menggunakan DDA lines (custom engine)."""
+        """Gambar grid menggunakan dot (titik) agar terlihat lebih modern."""
         w, h = self.surface.get_size()
         color = config.CANVAS_GRID
 
-        # Garis vertikal
+        # Gunakan grid titik yang halus, 2x2 px untuk setiap persimpangan
         for x in range(0, w, config.GRID_SIZE):
-            draw_line_dda(self.surface, color, x, 0, x, h)
-
-        # Garis horizontal
-        for y in range(0, h, config.GRID_SIZE):
-            draw_line_dda(self.surface, color, 0, y, w, y)
+            for y in range(0, h, config.GRID_SIZE):
+                self.surface.set_at((x, y), color)
+                self.surface.set_at((x+1, y), color)
+                self.surface.set_at((x, y+1), color)
+                self.surface.set_at((x+1, y+1), color)
 
     def hit_test_objects(self, cx: float, cy: float):
         """Return objek yang terkena hit test (top-most first)."""
