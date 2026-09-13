@@ -14,15 +14,15 @@ MENUS = {
     "Tampilan": ["Tampilkan Grid", "Tampilkan Toolbar"],
 }
 
-MENU_ITEM_HEIGHT = 26
-MENU_ITEM_WIDTH  = 150
+MENU_ITEM_HEIGHT = 32
+MENU_ITEM_WIDTH  = 160
 
 
 class MenuBar:
     def __init__(self, width: int):
         self.rect = pygame.Rect(0, 0, width, config.MENUBAR_HEIGHT)
-        self.font = pygame.font.SysFont("Courier New", 13, bold=True)
-        self.font_item = pygame.font.SysFont("Courier New", 12)
+        self.font = pygame.font.SysFont("Segoe UI", 13, bold=True)
+        self.font_item = pygame.font.SysFont("Segoe UI", 12)
         self.open_menu = None   # "File" / "Edit" / "View" / None
         self.hovered_item = -1
 
@@ -108,18 +108,18 @@ class MenuBar:
             dd_height = len(items) * MENU_ITEM_HEIGHT
 
             # Shadow + background
-            pygame.draw.rect(surface, (20, 20, 30),
-                             (ddx + 2, ddy + 2, MENU_ITEM_WIDTH, dd_height))
+            pygame.draw.rect(surface, (15, 15, 18),
+                             (ddx + 3, ddy + 3, MENU_ITEM_WIDTH, dd_height), border_radius=6)
             pygame.draw.rect(surface, config.C_PANEL,
-                             (ddx, ddy, MENU_ITEM_WIDTH, dd_height))
+                             (ddx, ddy, MENU_ITEM_WIDTH, dd_height), border_radius=6)
             pygame.draw.rect(surface, config.C_BORDER,
-                             (ddx, ddy, MENU_ITEM_WIDTH, dd_height), 1)
+                             (ddx, ddy, MENU_ITEM_WIDTH, dd_height), 1, border_radius=6)
 
             for i, item in enumerate(items):
                 iy = ddy + i * MENU_ITEM_HEIGHT
                 if i == self.hovered_item:
                     pygame.draw.rect(surface, config.C_ACCENT,
-                                     (ddx + 1, iy, MENU_ITEM_WIDTH - 2, MENU_ITEM_HEIGHT))
+                                     (ddx + 4, iy + 2, MENU_ITEM_WIDTH - 8, MENU_ITEM_HEIGHT - 4), border_radius=4)
                     color = config.C_WHITE
                 else:
                     color = config.C_TEXT

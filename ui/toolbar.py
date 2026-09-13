@@ -26,8 +26,8 @@ BUTTON_PAD  = 4
 class Toolbar:
     def __init__(self, x: int, y: int, height: int):
         self.rect = pygame.Rect(x, y, config.TOOLBAR_WIDTH, height)
-        self.font = pygame.font.SysFont("Courier New", 11, bold=True)
-        self.font_small = pygame.font.SysFont("Courier New", 9)
+        self.font = pygame.font.SysFont("Segoe UI", 12, bold=True)
+        self.font_small = pygame.font.SysFont("Segoe UI", 10)
         self.active_tool = "select"
         self.hovered = None
 
@@ -110,7 +110,7 @@ class Toolbar:
             pts = [(cx + r * math.sin(i * 2 * math.pi / 5), cy - r * math.cos(i * 2 * math.pi / 5)) for i in range(5)]
             pygame.draw.polygon(surface, color, pts, 2)
         elif tid == "text":
-            font = pygame.font.SysFont("Courier New", 18, bold=True)
+            font = pygame.font.SysFont("Segoe UI", 18, bold=True)
             ts = font.render("T", True, color)
             tr = ts.get_rect(center=(cx, cy))
             surface.blit(ts, tr)

@@ -71,7 +71,7 @@ class App:
         self.show_toolbar = True
 
         # ─── Status bar font ─────────────────────────
-        self.status_font = pygame.font.SysFont("Courier New", 12)
+        self.status_font = pygame.font.SysFont("Segoe UI", 12)
 
         # Mouse tracking
         self._mouse_down = False

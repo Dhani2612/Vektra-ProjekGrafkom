@@ -11,7 +11,7 @@ import config
 class PropertiesPanel:
     def __init__(self, x: int, y: int, width: int, height: int):
         self.rect = pygame.Rect(x, y, width, height)
-        self.font = pygame.font.SysFont("Courier New", 13, bold=True)
+        self.font = pygame.font.SysFont("Segoe UI", 13, bold=True)
 
         # Color swatches yang bisa dipilih
         self.stroke_colors = [
